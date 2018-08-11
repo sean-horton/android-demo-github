@@ -30,6 +30,11 @@ public class SearchListFragment extends Fragment {
     private SearchListAdapter mAdapter;
     private State mState;
 
+    /**
+     * Creates a new instance of a {@link SearchListAdapter}.
+     *
+     * @return a new {@link SearchListAdapter}
+     */
     public static SearchListFragment newInstance() {
         return new SearchListFragment();
     }
@@ -39,7 +44,7 @@ public class SearchListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mState = App.getInstance().getState();
 
-        View rootView = inflater.inflate(R.layout.search_list_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_search_list, container, false);
 
         mUserList = rootView.findViewById(R.id.user_list);
         mEditText = rootView.findViewById(R.id.search_edit_text);
@@ -56,7 +61,7 @@ public class SearchListFragment extends Fragment {
         mUserList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // TODO
+                handleListClick();
             }
         });
 
@@ -73,11 +78,6 @@ public class SearchListFragment extends Fragment {
     public void onStop() {
         super.onStop();
         mState.unregister(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     //////////////////////////
@@ -128,7 +128,7 @@ public class SearchListFragment extends Fragment {
     }
 
     private void handleListClick() {
-
+        // TODO - nothing right now
     }
 
 }

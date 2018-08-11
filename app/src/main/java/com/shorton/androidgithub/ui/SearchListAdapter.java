@@ -15,6 +15,9 @@ import com.shorton.androidgithub.backend.data.User;
 
 import java.util.List;
 
+/**
+ * Display a list of GitHub users
+ */
 public class SearchListAdapter extends BaseAdapter {
 
     private final State mState;
@@ -24,6 +27,11 @@ public class SearchListAdapter extends BaseAdapter {
         mState = state;
     }
 
+    /**
+     * Update the lists contents
+     *
+     * @param users the new users to display
+     */
     public void update(List<User> users) {
         mUsers = users;
         notifyDataSetChanged();
@@ -59,9 +67,9 @@ public class SearchListAdapter extends BaseAdapter {
                     .inflate(R.layout.list_item_user, viewGroup, false);
 
             viewHolder = new ViewHolder();
-            viewHolder.name = view.findViewById(R.id.user_name);
-            viewHolder.avatar = view.findViewById(R.id.user_avatar);
-            viewHolder.progressBar = view.findViewById(R.id.user_avatar_spinner);
+            viewHolder.mName = view.findViewById(R.id.user_name);
+            viewHolder.mAvatar = view.findViewById(R.id.user_avatar);
+            viewHolder.mProgressBar = view.findViewById(R.id.user_avatar_spinner);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -69,16 +77,17 @@ public class SearchListAdapter extends BaseAdapter {
 
         User user = getItem(i);
         if (user != null) {
-            viewHolder.name.setText(user.getLogin());
+            viewHolder.mName.setText(user.getLogin());
 
+            // If we have a bitmap, display image. Otherwise show spinner
             Bitmap bitmap = mState.fetchImage(user.getAvatarUrl());
             if (bitmap != null) {
-                viewHolder.progressBar.setVisibility(View.GONE);
-                viewHolder.avatar.setVisibility(View.VISIBLE);
-                viewHolder.avatar.setImageBitmap(bitmap);
+                viewHolder.mProgressBar.setVisibility(View.GONE);
+                viewHolder.mAvatar.setVisibility(View.VISIBLE);
+                viewHolder.mAvatar.setImageBitmap(bitmap);
             } else {
-                viewHolder.progressBar.setVisibility(View.VISIBLE);
-                viewHolder.avatar.setVisibility(View.INVISIBLE);
+                viewHolder.mProgressBar.setVisibility(View.VISIBLE);
+                viewHolder.mAvatar.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -86,9 +95,9 @@ public class SearchListAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        ImageView avatar;
-        ProgressBar progressBar;
-        TextView name;
+        ImageView mAvatar;
+        ProgressBar mProgressBar;
+        TextView mName;
     }
 
 }

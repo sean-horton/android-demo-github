@@ -12,10 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // We're going to create two fragments to show power of event bus.
-        // However, this could be shown using one fragment
         SearchListFragment searchListFragment = SearchListFragment.newInstance();
-
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, searchListFragment)
                 .commit();
