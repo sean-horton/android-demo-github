@@ -80,7 +80,7 @@ public class SearchListAdapter extends BaseAdapter {
             viewHolder.mName.setText(user.getLogin());
 
             // If we have a bitmap, display image. Otherwise show spinner
-            Bitmap bitmap = mState.fetchImage(user.getAvatarUrl());
+            Bitmap bitmap = mState.fetchImage(user);
             if (bitmap != null) {
                 viewHolder.mProgressBar.setVisibility(View.GONE);
                 viewHolder.mAvatar.setVisibility(View.VISIBLE);
