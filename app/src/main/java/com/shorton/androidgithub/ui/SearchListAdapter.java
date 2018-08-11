@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.shorton.androidgithub.R;
@@ -60,6 +61,7 @@ public class SearchListAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.name = view.findViewById(R.id.user_name);
             viewHolder.avatar = view.findViewById(R.id.user_avatar);
+            viewHolder.progressBar = view.findViewById(R.id.user_avatar_spinner);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -71,7 +73,12 @@ public class SearchListAdapter extends BaseAdapter {
 
             Bitmap bitmap = mState.fetchImage(user.getAvatarUrl());
             if (bitmap != null) {
+                viewHolder.progressBar.setVisibility(View.GONE);
+                viewHolder.avatar.setVisibility(View.VISIBLE);
                 viewHolder.avatar.setImageBitmap(bitmap);
+            } else {
+                viewHolder.progressBar.setVisibility(View.VISIBLE);
+                viewHolder.avatar.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -80,6 +87,7 @@ public class SearchListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         ImageView avatar;
+        ProgressBar progressBar;
         TextView name;
     }
 
