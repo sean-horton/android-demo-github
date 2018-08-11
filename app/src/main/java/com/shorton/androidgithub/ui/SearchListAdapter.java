@@ -64,7 +64,7 @@ public class SearchListAdapter extends BaseAdapter {
 
         if (view == null) {
             view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.list_item_user, viewGroup, false);
+                    .inflate(R.layout.list_item_search_user, viewGroup, false);
 
             viewHolder = new ViewHolder();
             viewHolder.mName = view.findViewById(R.id.user_name);
