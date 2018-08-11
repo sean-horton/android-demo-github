@@ -39,7 +39,7 @@ public final class App extends Application {
         INSTANCE = this;
 
         mEventBus = new EventBus();
-        mState = new State(this, mEventBus);
+        mState = new State(mEventBus);
 
         super.onCreate();
     }
