@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.shorton.androidgithub.R;
 import com.shorton.androidgithub.backend.State;
+import com.shorton.androidgithub.backend.event.UserAvatarEvent;
 import com.shorton.androidgithub.backend.event.UserListEvent;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -50,7 +51,7 @@ public class SearchListFragment extends Fragment {
             }
         });
 
-        mAdapter = new SearchListAdapter();
+        mAdapter = new SearchListAdapter(mState);
         mUserList.setAdapter(mAdapter);
         mUserList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -99,6 +100,16 @@ public class SearchListFragment extends Fragment {
                 }
             });
         }
+    }
+
+    @Subscribe
+    public void onUserAvatarEvent(UserAvatarEvent event) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     //////////////////////////

@@ -1,5 +1,6 @@
 package com.shorton.androidgithub.ui;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shorton.androidgithub.R;
+import com.shorton.androidgithub.backend.State;
 import com.shorton.androidgithub.backend.data.User;
 
 import java.util.List;
 
 public class SearchListAdapter extends BaseAdapter {
 
+    private final State mState;
     private List<User> mUsers;
+
+    public SearchListAdapter(State state) {
+        mState = state;
+    }
 
     public void update(List<User> users) {
         mUsers = users;
@@ -52,6 +59,7 @@ public class SearchListAdapter extends BaseAdapter {
 
             viewHolder = new ViewHolder();
             viewHolder.name = view.findViewById(R.id.user_name);
+            viewHolder.avatar = view.findViewById(R.id.user_avatar);
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -60,6 +68,11 @@ public class SearchListAdapter extends BaseAdapter {
         User user = getItem(i);
         if (user != null) {
             viewHolder.name.setText(user.getLogin());
+
+            Bitmap bitmap = mState.fetchImage(user.getAvatarUrl());
+            if (bitmap != null) {
+                viewHolder.avatar.setImageBitmap(bitmap);
+            }
         }
 
         return view;
