@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * gson map of json from GitHub.
+ *
+ * @see <a href=https://developer.github.com/v3/search/#search-users">GitHub API</a>
+ */
 public class UserSearchQuery {
 
     @SerializedName("total_count")

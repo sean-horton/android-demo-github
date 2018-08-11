@@ -3,6 +3,11 @@ package com.shorton.androidgithub.backend.data;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * gson map of json from GitHub.
+ *
+ * @see <a href=https://developer.github.com/v3/search/#search-users">GitHub API</a>
+ */
 public class User {
 
     @SerializedName("login")
