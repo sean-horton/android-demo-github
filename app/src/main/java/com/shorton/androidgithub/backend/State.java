@@ -148,9 +148,10 @@ public class State {
     }
 
     /**
+     * Add a bitmap image to our bitmap cache
      *
-     * @param url
-     * @param bitmap
+     * @param url    the url of the avatar image
+     * @param bitmap the image
      */
     private synchronized void addBitmap(String url, Bitmap bitmap) {
         mBitmapMap.put(url, bitmap);
